@@ -2,6 +2,9 @@
 
 const tds = document.querySelectorAll('td')
 const win = document.querySelector('#result')
+const rematch = document.querySelector('#rematch')
+rematch.addEventListener('click', reset)
+
 
 let arr = []
 let arrr = []
@@ -9,6 +12,7 @@ let arrrr = []
 let timeIsClicked = 0
 let gameover = false
 for (let i = 0; i < tds.length; i++) {
+
     if (!gameover) tds[i].addEventListener('click', playersTurn)
 
     function playersTurn () {
@@ -19,11 +23,11 @@ for (let i = 0; i < tds.length; i++) {
                 tds[i].textContent = 'O'
                 timeIsClicked = 0
             } else {
+                win.textContent = 'Playing...'
                 tds[i].style.color = 'red'
                 tds[i].textContent = 'X'
             }
         }
-
 
         if (tds[0].textContent !== '' && tds[4].textContent !== '' && tds[8].textContent !== '')
             if (tds[0].textContent === tds[4].textContent && tds[4].textContent === tds[8].textContent) {
@@ -64,6 +68,7 @@ for (let i = 0; i < tds.length; i++) {
                 gameover = true
                 win.textContent = 'O WINS'
             }
+
             let td1 = document.getElementsByTagName('tr')[j].getElementsByTagName('td')[0]
 
             arr.push(td1)
@@ -109,21 +114,29 @@ for (let i = 0; i < tds.length; i++) {
                     gameover = true
                     win.textContent = 'O WINS'
                 }
+
+
+
         }
     }
+}
+
+function reset () {
+    Array.from(tds).forEach((e) => {
+        e.removeAttribute("class")
+        e.innerText = ''
+    })
+    document.querySelectorAll('tr').forEach(e => e.removeAttribute("class"))
+    win.textContent = 'Lets play'
+    gameover = false
 }
 
 function sameContentX (x) {
     return x.textContent === 'X'
 }
+
 function sameContentO (o) {
     return o.textContent === 'O'
 }
-
-const rematch = document.querySelector('#rematch')
-rematch.addEventListener('click', restart)
-
-function restart () {
-
  
-}
+
