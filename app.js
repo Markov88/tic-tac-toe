@@ -23,12 +23,12 @@ for (let i = 0; i < tds.length; i++) {
                 tds[i].textContent = 'O'
                 timeIsClicked = 0
             } else {
-                win.textContent = 'Playing...'
                 tds[i].style.color = 'red'
                 tds[i].textContent = 'X'
             }
         }
-
+        win.textContent = 'Playing...'
+        
         if (tds[0].textContent !== '' && tds[4].textContent !== '' && tds[8].textContent !== '')
             if (tds[0].textContent === tds[4].textContent && tds[4].textContent === tds[8].textContent) {
                 gameover = true
@@ -114,9 +114,6 @@ for (let i = 0; i < tds.length; i++) {
                     gameover = true
                     win.textContent = 'O WINS'
                 }
-
-
-
         }
     }
 }
