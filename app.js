@@ -1,10 +1,7 @@
-
-
 const tds = document.querySelectorAll('td')
 const win = document.querySelector('#result')
 const rematch = document.querySelector('#rematch')
 rematch.addEventListener('click', reset)
-
 
 let arr = []
 let arrr = []
@@ -28,7 +25,7 @@ for (let i = 0; i < tds.length; i++) {
             }
         }
         win.textContent = 'Playing...'
-        
+
         if (tds[0].textContent !== '' && tds[4].textContent !== '' && tds[8].textContent !== '')
             if (tds[0].textContent === tds[4].textContent && tds[4].textContent === tds[8].textContent) {
                 gameover = true
