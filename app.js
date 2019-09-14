@@ -7,6 +7,7 @@ let arr = []
 let arrr = []
 let arrrr = []
 let timeIsClicked = 0
+let noWinner = 0
 let gameover = false
 for (let i = 0; i < tds.length; i++) {
 
@@ -15,15 +16,18 @@ for (let i = 0; i < tds.length; i++) {
     function playersTurn () {
         if (tds[i].textContent === '' && !gameover) {
             timeIsClicked++
+            noWinner++
             if (timeIsClicked > 1) {
                 tds[i].style.color = 'grey'
                 tds[i].textContent = 'O'
                 timeIsClicked = 0
+
             } else {
                 tds[i].style.color = 'red'
                 tds[i].textContent = 'X'
             }
         }
+
         win.textContent = 'Playing...'
 
         if (tds[0].textContent !== '' && tds[4].textContent !== '' && tds[8].textContent !== '')
@@ -111,15 +115,21 @@ for (let i = 0; i < tds.length; i++) {
                     gameover = true
                     win.textContent = 'O WINS'
                 }
+
+            if (noWinner === 9 && gameover === false) 
+                win.textContent = 'There are no winner!'
+                      
         }
     }
 }
 
 function reset () {
+    noWinner = 0
     Array.from(tds).forEach((e) => {
         e.removeAttribute("class")
         e.innerText = ''
     })
+
     document.querySelectorAll('tr').forEach(e => e.removeAttribute("class"))
     win.textContent = 'Lets play'
     gameover = false
@@ -132,5 +142,5 @@ function sameContentX (x) {
 function sameContentO (o) {
     return o.textContent === 'O'
 }
- 
+
 
